@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DEBUGGING</title>
+  <script type="text/javascript" src="http://cdn.tonejs.org/r6/Tone.min.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+
+    //ANSWER THE FOLLOWING QUESTIONS USING ONLY THE DEVELOPER TOOLS (don't type anything here)
+
+    // 0
+    // What is the type of osc's output?
+      // object
+    // Whats the volume value of osc's output?
+
+      // {input: AudioParam, _param: AudioParam, units: "db", convert: true, overridden: false}
+
+    var osc = new Tone.Oscillator();
+
+    // 1
+    // What is the type of Tone.context?
+      // object
+    // What is the value of Tone.context.currentTime?
+      // 337.06666666666666
+    // What is the value of Tone.context.currentTime now?
+      // 338.64562358276646
+
+    // 2
+    // What properties does this GainNode named gainy have?
+      // channelCount: 2
+      // channelCountMode: "max"
+      // channelInterpretation: "speakers"
+      // context: AudioContext
+      // gain: AudioParam
+      // numberOfInputs: 1
+      // numberOfOutputs: 1
+      // __proto__: GainNode
+    // What are the method's attached to gainy's __proto___
+      // constructor, get gain?
+
+    var gainy = Tone.context.createGain();
+
+    // 3
+    // What is the value of freq before the lfo is connected
+      // 440
+    // What is the value after?
+      // 0
+    // Step into the LFO constructor. There is a member called this.amplitude. What is the 'units' property of this.amplitude equal?
+      // "normalRange"
+    // Start oscTwo by calling oscTwo.start();
+
+    (function(){
+
+      var lfo = new Tone.LFO("4n", 20, 20000);
+
+      var oscTwo = new Tone.Oscillator().toMaster();
+
+      var freq = oscTwo.frequency.value;
+
+      lfo.connect(oscTwo.frequency);
+
+      freq = oscTwo.frequency.value;
+
+      lfo.start();
+
+    }());
+
+
+  </script>
+</body>
+</html>
