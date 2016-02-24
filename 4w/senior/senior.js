@@ -9,7 +9,6 @@ var rain = new Tone.Player({
   "volume": -20
 }).toMaster();
 
-
 function rampRain() {
   console.log('ramp function start');
   var rampTime = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
@@ -26,10 +25,10 @@ function rampRain() {
   var pauseTime = rampTime * 2 - (rampTime / 2);
   console.log('pausetime = ' + pauseTime);
 
-  Tone.Transport.setTimeout(function() {
+  setTimeout(function() {
     console.log('setting timeout');
     rampRain();
-  }, pauseTime);
+  }, pauseTime * 1000);
 };
 rampRain();
 
@@ -73,6 +72,7 @@ var loop = new Tone.Loop(function(time) {
   };
   genLengths();
 }, 1.5).start(0);
+
 Tone.Transport.start();
 
 // var dist = new Tone.Distortion(0.4).toMaster();
