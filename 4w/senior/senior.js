@@ -6,8 +6,32 @@ var rain = new Tone.Player({
   "loopStart": 4,
   "loopEnd": 54,
   "autostart": true,
-  "volume": -6
+  "volume": -20
 }).toMaster();
+
+
+function rampRain() {
+  console.log('ramp function start');
+  var rampTime = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
+  console.log('ramptime = ' + rampTime);
+
+  if (rain.volume.value < -19) {
+    rain.volume.rampTo(-6, rampTime);
+    console.log('ramping up ' + rampTime);
+  } else if (rain.volume.value > -7) {
+    rain.volume.rampTo(-20, rampTime);
+    console.log('ramping down ' + rampTime);
+  }
+
+  var pauseTime = rampTime * 2 - (rampTime / 2);
+  console.log('pausetime = ' + pauseTime);
+
+  Tone.Transport.setTimeout(function() {
+    console.log('setting timeout');
+    rampRain();
+  }, pauseTime);
+};
+rampRain();
 
 var bassEnv = new Tone.AmplitudeEnvelope({
   "attack": 0.3,
@@ -25,7 +49,7 @@ var lengthSum = 0;
 var lengths = [];
 
 genLengths();
-var bassLoop = new Tone.Loop(function(time) {
+var loop = new Tone.Loop(function(time) {
   var index = Math.floor(Math.random() * bassNotes.length);
 
   bass.frequency.value = bassNotes[bassIndex];
@@ -70,17 +94,23 @@ var synth = new Tone.SimpleSynth({
 var noteIndex = Math.floor(Math.random() * notes.length);
 
 function nextNote() {
-  if (Math.random() < 0.3) {
+  if (Math.random() < 0.25) {
     noteIndex--;
     noteIndex = Math.max(noteIndex, 0);
-  } else if (Math.random() < 0.6) {
+  } else if (Math.random() < 0.5) {
     noteIndex++;
     noteIndex = Math.min(noteIndex, notes.length - 1);
-  } else if (Math.random() < 0.8) {
+  } else if (Math.random() < 0.65) {
     noteIndex -= 2;
     noteIndex = Math.max(noteIndex, 0);
-  } else {
+  } else if (Math.random() < 0.8) {
     noteIndex += 2;
+    noteIndex = Math.min(noteIndex, notes.length - 1);
+  } else if (Math.random() < 0.9) {
+    noteIndex -= 3;
+    noteIndex = Math.max(noteIndex, 0);
+  } else {
+    noteIndex += 3;
     noteIndex = Math.min(noteIndex, notes.length - 1);
   }
 }
