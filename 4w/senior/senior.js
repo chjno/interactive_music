@@ -10,23 +10,17 @@ var rain = new Tone.Player({
 }).toMaster();
 
 function rampRain() {
-  console.log('ramp function start');
   var rampTime = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
-  console.log('ramptime = ' + rampTime);
 
   if (rain.volume.value < -19) {
     rain.volume.rampTo(-6, rampTime);
-    console.log('ramping up ' + rampTime);
   } else if (rain.volume.value > -7) {
     rain.volume.rampTo(-20, rampTime);
-    console.log('ramping down ' + rampTime);
   }
 
   var pauseTime = rampTime * 2 - (rampTime / 2);
-  console.log('pausetime = ' + pauseTime);
 
   setTimeout(function() {
-    console.log('setting timeout');
     rampRain();
   }, pauseTime * 1000);
 };
