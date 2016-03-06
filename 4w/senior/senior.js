@@ -13,8 +13,8 @@ function rampRain() {
   var rampTime = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
 
   if (rain.volume.value < -19) {
-    rain.volume.rampTo(-6, rampTime);
-  } else if (rain.volume.value > -7) {
+    rain.volume.rampTo(0, rampTime);
+  } else if (rain.volume.value > -1) {
     rain.volume.rampTo(-20, rampTime);
   }
 
