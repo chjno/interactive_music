@@ -10,16 +10,17 @@ var rain = new Tone.Player({
 }).toMaster();
 
 function rampRain() {
+  // console.log(rain.volume.value);
   var rampTime = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
-
+  // console.log(rampTime);
   if (rain.volume.value < -19) {
-    rain.volume.rampTo(-6, rampTime);
-  } else if (rain.volume.value > -7) {
+    rain.volume.rampTo(0, rampTime);
+  } else if (rain.volume.value > -1) {
     rain.volume.rampTo(-20, rampTime);
   }
 
   var pauseTime = rampTime * 2 - (rampTime / 2);
-
+  // console.log(pauseTime);
   setTimeout(function() {
     rampRain();
   }, pauseTime * 1000);
@@ -31,7 +32,7 @@ var bassEnv = new Tone.AmplitudeEnvelope({
   "decay": 0.2,
   "sustain": 0.7,
   "release": 1
-}).toMaster();
+});
 
 var bassNotes = ['G2', 'D2', 'F#2', 'A2', 'G2', 'D2', 'F#2', 'G2'];
 var notes = ['A3', 'B3', 'C#4', 'D4', 'E4', 'F#4', 'G4'];
@@ -83,7 +84,13 @@ var synth = new Tone.SimpleSynth({
     "sustain": 0.7,
     "release": 0.02,
   }
-}).toMaster();
+});
+
+var bassVol = new Tone.Volume(-4);
+bass.chain(bassVol, Tone.Master);
+
+var synthVol = new Tone.Volume(-6);
+synth.chain(synthVol, Tone.Master);
 
 var noteIndex = Math.floor(Math.random() * notes.length);
 

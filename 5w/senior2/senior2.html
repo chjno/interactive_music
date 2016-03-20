@@ -1,0 +1,20 @@
+<html>
+<head>
+  <title>senior2</title>
+  <script type="text/javascript" src="http://cdn.tonejs.org/latest/Tone.min.js"></script>
+  <script type="text/javascript" src="motif.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+
+    var motif = new Motif();
+
+    var endTime = motif.start();
+
+    motif.updateProbabilities(0.1,0.4,0.5);
+
+    motif.start(endTime);
+
+  </script>
+</body>
+</html>
