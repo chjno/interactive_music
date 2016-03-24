@@ -10,9 +10,7 @@ var rain = new Tone.Player({
 }).toMaster();
 
 function rampRain() {
-  // console.log(rain.volume.value);
   var rampTime = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
-  // console.log(rampTime);
   if (rain.volume.value < -19) {
     rain.volume.rampTo(0, rampTime);
   } else if (rain.volume.value > -1) {
@@ -20,19 +18,11 @@ function rampRain() {
   }
 
   var pauseTime = rampTime * 2 - (rampTime / 2);
-  // console.log(pauseTime);
   setTimeout(function() {
     rampRain();
   }, pauseTime * 1000);
 };
 rampRain();
-
-var bassEnv = new Tone.AmplitudeEnvelope({
-  "attack": 0.3,
-  "decay": 0.2,
-  "sustain": 0.7,
-  "release": 1
-});
 
 var bassNotes = ['G2', 'D2', 'F#2', 'A2', 'G2', 'D2', 'F#2', 'G2'];
 var notes = ['A3', 'B3', 'C#4', 'D4', 'E4', 'F#4', 'G4'];
@@ -46,8 +36,7 @@ genLengths();
 var loop = new Tone.Loop(function(time) {
   var index = Math.floor(Math.random() * bassNotes.length);
 
-  bass.frequency.value = bassNotes[bassIndex];
-  bassEnv.triggerAttackRelease(1.5);
+  bass.triggerAttackRelease(bassNotes[bassIndex], 1.5);
   bassIndex++;
   if (bassIndex > bassNotes.length - 1) {
     bassIndex = 0;
@@ -70,9 +59,17 @@ var loop = new Tone.Loop(function(time) {
 
 Tone.Transport.start();
 
-// var dist = new Tone.Distortion(0.4).toMaster();
-var bass = new Tone.OmniOscillator("G2", "triangle").connect(bassEnv).start();
-// bass.connect(dist);
+var bass = new Tone.SimpleSynth({
+  "oscillator": {
+    "type": "triangle"
+  },
+  "envelope": {
+    "attack": 0.3,
+    "decay": 0.2,
+    "sustain": 0.7,
+    "release": 1
+  }
+});
 
 var synth = new Tone.SimpleSynth({
   "oscillator": {
