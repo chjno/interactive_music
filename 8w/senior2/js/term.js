@@ -12,6 +12,13 @@ function draw(img, term) {
   }
 }
 
+function pauseTerm(delay, term){
+  term.pause();
+  setTimeout(function(){
+    term.resume();
+  }, delay);
+};
+
 function startTerm(){
   jQuery(function($, undefined) {
     $('#term').terminal(function(command, term) {
@@ -136,10 +143,13 @@ function startTerm(){
             setTimeout(function(){
               term.echo('[[;white;blue]The stars look strange tonight.]');
               term.echo(' ');
-            }, 4000);
+            }, 5000);
+            // setTimeout(function(){
+            //   laserShot();
+            // }, 1500);
             setTimeout(function(){
-              laserShot();
-            }, 6000);
+              rain.volume.rampTo(-5, 15);
+            }, 1000);
 
             if (!testing){
               pauseTerm(7000, term);
@@ -174,9 +184,6 @@ function startTerm(){
           
           break;
         default:
-          // term.echo(' ');
-          // term.echo('Please enter a command:');
-
           if (state == 0){
             term.echo(' ');
             term.echo('[[;green;black]come to] -- open your eyes');
@@ -221,11 +228,4 @@ function startTerm(){
       prompt: '> '
     });
   });
-
-  function pauseTerm(delay, term){
-    term.pause();
-    setTimeout(function(){
-      term.resume();
-    }, delay);
-  };
 }

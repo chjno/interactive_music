@@ -124,3 +124,15 @@ var puff = new Tone.Player({
   "url": puffURL,
   "volume": -50
 }).toMaster();
+
+
+var rainURL = './sounds/rain.mp3';
+
+var rain = new Tone.Player({
+  "url": rainURL,
+  "loop": true,
+  "loopStart": 4,
+  "loopEnd": 54,
+  "autostart": true,
+  "volume": -55
+}).toMaster();
