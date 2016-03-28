@@ -24,14 +24,14 @@ function startTerm(){
     $('#term').terminal(function(command, term) {
       command = command.replace(/ /g, '').toLowerCase();
       switch (command) {
-        case 'trees':
 
-          draw(trees, term);
-          break;
+        // case 'trees':
+        //   draw(trees, term);
+        //   break;
 
-        case 'stars':
-          draw(stars, term);
-          break;
+        // case 'stars':
+        //   draw(stars, term);
+        //   break;
 
         case 'cometo':
           if (state < 1){
@@ -172,7 +172,7 @@ function startTerm(){
             motif.synth.volume.rampTo(motif.synth.volume.value - 50, 9);
 
             if (!testing){
-              pauseTerm(8000, term);
+              pauseTerm(10000, term);
 
               // setTimeout(function(){
               //   term.echo('[[;white;blue]if a person falls in the forest and no one is around to hear it...]')
