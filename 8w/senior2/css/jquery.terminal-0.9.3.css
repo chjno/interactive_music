@@ -262,8 +262,9 @@
     clear: both;
 }
 .terminal a {
-    color: #0F60FF;
+    color: green;
+    /*text-decoration: none;*/
 }
 .terminal a:hover {
-    color: red;
+    color: yellow;
 }

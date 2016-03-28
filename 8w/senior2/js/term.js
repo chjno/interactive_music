@@ -25,14 +25,6 @@ function startTerm(){
       command = command.replace(/ /g, '').toLowerCase();
       switch (command) {
 
-        // case 'trees':
-        //   draw(trees, term);
-        //   break;
-
-        // case 'stars':
-        //   draw(stars, term);
-        //   break;
-
         case 'cometo':
           if (state < 1){
             state = 1;
@@ -44,7 +36,7 @@ function startTerm(){
               term.echo(' ');
             }, 2000);
             setTimeout(function(){
-              term.echo('[[;white;blue]               surrounded by darkness.]');
+              term.echo('[[;white;black]               ][[;white;blue]surrounded by darkness.]');
               term.echo(' ');
             }, 5000);
 
@@ -67,18 +59,22 @@ function startTerm(){
               // term.echo(' ');
             }, 4500);
             setTimeout(function(){
-              term.echo("[[;white;blue].]");
-            }, 5500);
+              term.echo('[[;white;blue].]');
+            }, 6000);
             setTimeout(function(){
-              term.echo("[[;white;blue].]");
-            }, 6500);
+              term.echo('[[;white;blue].]');
+            }, 7000);
             setTimeout(function(){
-              term.echo("[[;white;blue].]");
+              term.echo('[[;white;blue].]');
               term.echo(' ');
-            }, 7500);
+            }, 8000);
+            setTimeout(function(){
+              term.echo("[[;white;blue]?]");
+              term.echo(' ');
+            }, 9500);
 
             if (!testing){
-              pauseTerm(8000, term);
+              pauseTerm(10500, term);
             }
           };
 
@@ -125,12 +121,17 @@ function startTerm(){
 
             motifStart = true;
             setTimeout(function(){
-              term.echo("[[;white;blue]You can't seem to keep your balance.]");
+              term.echo("[[;white;blue]It's dark]");
               term.echo(' ');
-            }, 8000);
+            }, 7000);
+
+            setTimeout(function(){
+              term.echo("[[;white;black]   ][[;white;blue]...and you can't seem to keep your balance.]");
+              term.echo(' ');
+            }, 11000);
 
             if (!testing){
-              pauseTerm(10000, term);
+              pauseTerm(13000, term);
             };
           }
           break;
@@ -161,6 +162,7 @@ function startTerm(){
           if (state < 7){
             state = 7
 
+            term.echo(' ');
             setTimeout(function(){
               puff.volume.rampTo(-4, 6);
               puff.start();
@@ -172,7 +174,7 @@ function startTerm(){
             motif.synth.volume.rampTo(motif.synth.volume.value - 50, 9);
 
             if (!testing){
-              pauseTerm(10000, term);
+              pauseTerm(11000, term);
 
               // setTimeout(function(){
               //   term.echo('[[;white;blue]if a person falls in the forest and no one is around to hear it...]')
@@ -213,9 +215,37 @@ function startTerm(){
             term.echo('[[;green;black]close] -- close your eyes and take a deep breath');
             term.echo(' ');
           } else if (state == 7){
-            term.echo(' ');
-            term.echo('[[;white;blue]if a person falls in the forest and no one is around to hear it...]')
-            term.echo(' ');
+
+            if (!testing){
+              term.pause();
+              term.freeze(true);
+            };
+
+            setTimeout(function(){
+              term.echo(' ');
+              term.echo('[[;white;blue]if a person falls in the forest]');
+              term.echo(' ');
+            }, 1500);
+            setTimeout(function(){
+              term.echo('[[;white;black]                 ][[;white;blue]and no one is around to hear it]');
+            }, 3000);
+            setTimeout(function(){
+              term.echo('[[;white;black]                                                   ][[;white;blue].]');
+            }, 5000);
+            setTimeout(function(){
+              term.echo('[[;white;black]                                                        ][[;white;blue].]');
+            }, 6000);
+            setTimeout(function(){
+              term.echo('[[;white;black]                                                             ][[;white;blue].]');
+              term.echo(' ');
+              term.echo(' ');
+              term.echo(' ');
+              term.echo(' ');
+              term.echo(' ');
+            }, 7000);
+            setTimeout(function(){
+              term.echo('[[;yellow;black]Music adapted from ][[!;;;;https://open.spotify.com/track/7GZkTGmxvBOMXjBsMxgKvz]"...And The Forest Began To Sing"][[;yellow;black] by Royksopp]');
+            }, 10000);
             state = 8;
           }
           break;
@@ -225,7 +255,8 @@ function startTerm(){
       name: 'js_demo',
       height: '100%',
       width: '100%',
-      prompt: '> '
+      prompt: '> ',
+      convertLinks: false
     });
   });
 }
