@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>senior2</title>
+  <script type="text/javascript" src="libraries/tone.min.js"></script>
+  <script type="text/javascript" src="libraries/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="libraries/jquery.terminal-0.9.3.min.js"></script>
+  <script type="text/javascript" src="js/bass.js"></script>
+  <script type="text/javascript" src="js/samples.js"></script>
+  <script type="text/javascript" src="js/motif.js"></script>
+  <script type="text/javascript" src="js/term.js"></script>
+  <script type="text/javascript" src="js/ascii.js"></script>
+  <link href="css/jquery.terminal-0.9.3.css" rel="stylesheet"/>
+  <style>
+    body {
+        background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="term"></div>
+
+  <script type="text/javascript">
+
+    Tone.Buffer.on('load', function(){
+      Tone.Transport.start();
+      startTerm();
+
+      // laser.start();
+      // var delay = 0.1
+      // Tone.Transport.scheduleRepeat(function(time){
+      //   laser.start(time);
+      // }, delay, laser.now(), 10);
+
+
+    });
+
+    var motif = new Motif();
+
+    Tone.Transport.scheduleRepeat(function(time){
+      motif.start(time);
+      motif.genLengths;
+    }, 12, 0);
+
+
+
+
+
+
+    // for (var i = 0; i < 3; i++){
+    //   var endTime = motif.start();
+    //   motif.start(endTime);  
+    // }
+    
+    // motif.setProbabilities(0.1,0.4,0.5);
+
+
+    // for (var i = 0; i < 3; i++){
+    //   var endTime = motif.start();
+    //   motif.start(endTime);
+    // }
+
+  </script>
+
+
+</body>
+</html>
